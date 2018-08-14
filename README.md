@@ -8,8 +8,8 @@
 4. (**TODO**) 可以修改加入无限滚动和轮播功能,变成轮播图
 
 ### 效果图
-<img src="http://qiniu.inrush.me/2018-08-14-imageDemo.png" width=286 />
-<img src="http://qiniu.inrush.me/2018-08-14-textImage.png" width=286 />
+<img src="http://qiniu.inrush.me/2018-08-14-imageDemo.png" width=286 /><img src="http://qiniu.inrush.me/2018-08-14-textImage.png" width=286 />
+
 > 第一张图是将图片进行分页
 > 第二张图是将文字进行分页 
  
@@ -93,5 +93,6 @@ new Container(
 
 ### 参考
 [Official Example - Flutter Gallery](https://github.com/flutter/flutter/tree/master/examples/flutter_gallery)
+
 [Realank/flutter_card_navi](https://github.com/Realank/flutter_card_navi)
 
