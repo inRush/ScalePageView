@@ -23,7 +23,7 @@
 Add this to your package's pubspec.yaml file:
 ``` 
 dependencies:
-  scale_page_view: ^0.0.1
+  scale_page_view: ^1.0.0
 ```
 You can install packages from the command line:
 ```

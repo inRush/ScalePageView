@@ -1,4 +1,4 @@
-## [0.0.1] - The first release.
+## [1.0.0] - The first release.
 
 ### Features
 * Scale Multiple Page At One Page.
