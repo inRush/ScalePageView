@@ -20,7 +20,8 @@ class ScalePageView extends StatefulWidget {
       this.pageRatio: 0.5,
       this.scaleRatio: 0.2,
       this.opacityRatio: 0.5,
-      this.paddingTB: 23.0})
+      this.paddingTB: 23.0,
+      this.physics})
       : assert(children != null && children.length > 0),
         assert(pageRatio <= 1.0 && pageRatio > 0),
         assert(scaleRatio <= 1.0 && scaleRatio > 0),
@@ -42,6 +43,8 @@ class ScalePageView extends StatefulWidget {
   final double scaleRatio;
   final double opacityRatio;
   final double paddingTB;
+  final ScrollPhysics physics;
+
 
   @override
   State<StatefulWidget> createState() {
@@ -124,6 +127,7 @@ class ScalePageViewState extends State<ScalePageView> {
           controller: _pageController,
           children: _allItems(widget.children),
           onPageChanged: widget.onPageChange,
+          physics: widget.physics,
         ));
   }
 }

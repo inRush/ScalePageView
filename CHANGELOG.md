@@ -6,3 +6,7 @@
 ## [1.0.0] - Official release.
 
 No Change
+
+## [1.0.1] - Add Features
+
+add ScrollPhysics
