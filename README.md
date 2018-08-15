@@ -18,6 +18,22 @@
 
 ![](http://qiniu.inrush.me/ScalePageView.gif)
 ### 使用
+[Flutter Pub](https://pub.dartlang.org/packages/scale_page_view#-readme-tab-)
+
+Add this to your package's pubspec.yaml file:
+``` 
+dependencies:
+  scale_page_view: ^0.0.1
+```
+You can install packages from the command line:
+```
+$ flutter packages get
+```
+Now in your Dart code, you can use:
+
+```
+import 'package:scale_page_view/scale_page_view.dart';
+```
 
 ``` dart
 可用属性:
