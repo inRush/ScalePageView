@@ -7,6 +7,6 @@
 
 No Change
 
-## [1.0.1] - Add Features
+## [1.0.1] - [Minor edits] Add Property
 
-add ScrollPhysics
+add ScrollPhysics property
