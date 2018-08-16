@@ -130,9 +130,17 @@ List<String> descs = [
   "       西伯利亚雪橇犬（俄语：Сибирский хаски，英语：Siberian husky），常见别名哈士奇，昵称为二哈。西伯利亚雪橇犬体重介于雄犬20-27公斤，雌犬16-23公斤，身高大约雄犬肩高53-58厘米，雌犬51-56厘米，是一种中型犬。\n       西伯利亚雪橇犬是原始的古老犬种，在西伯利亚东北部、格陵兰南部生活。哈士奇名字的由来，是源自其独特的嘶哑声。哈士奇性格多变，有的极端胆小，也有的极端暴力，进入大陆和家庭的哈士奇，都已经没有了这种极端的性格，比较温顺，是一种流行于全球的宠物犬。与金毛犬、拉布拉多并列为三大无攻击型犬类。被世界各地广泛饲养，并在全球范围内，有大量该犬种的赛事。",
 ];
 
-class Example1 extends StatelessWidget {
+class Example1 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new Example1State();
+  }
+}
+
+/// Use State,avoid reinitializing variables because of refresh
+class Example1State extends State<Example1> {
   final PageController _pageController = new PageController();
-  final GlobalKey<ScalePageViewState> _pageKey = new GlobalKey();
+  final PageController _tabController = new PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +150,7 @@ class Example1 extends StatelessWidget {
           new Container(
               height: _kBar1Height,
               child: new ScalePageView(
-                key: _pageKey,
+                controller: _tabController,
                 children: images,
 //              backgrounds: backgrounds,
                 onPageChanging: (value) {
@@ -160,8 +168,11 @@ class Example1 extends StatelessWidget {
               child: new NotificationListener(
                   onNotification: (notification) {
                     if (notification is ScrollUpdateNotification) {
-                      _pageKey.currentState.jumpToWithoutSettling(
-                          _pageController.position.pixels);
+                      if (_tabController.position.pixels !=
+                          _pageController.position.pixels) {
+                        _tabController.position.jumpToWithoutSettling(
+                            _pageController.position.pixels);
+                      }
                     }
                   },
                   child: new PageView.builder(
@@ -206,9 +217,16 @@ class Example1 extends StatelessWidget {
   }
 }
 
-class Example2 extends StatelessWidget {
+class Example2 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new Example2State();
+  }
+}
+
+class Example2State extends State<Example2> {
   final PageController _pageController = new PageController();
-  final GlobalKey<ScalePageViewState> _pageKey = new GlobalKey();
+  final PageController _tabController = new PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -218,7 +236,7 @@ class Example2 extends StatelessWidget {
           new Container(
               height: _kBar2Height,
               child: new ScalePageView(
-                key: _pageKey,
+                controller: _tabController,
                 children: texts.map((String text) {
                   return new Text(
                     text,
@@ -241,8 +259,11 @@ class Example2 extends StatelessWidget {
               child: new NotificationListener(
                   onNotification: (notification) {
                     if (notification is ScrollUpdateNotification) {
-                      _pageKey.currentState.jumpToWithoutSettling(
-                          _pageController.position.pixels);
+                      if (_tabController.position.pixels !=
+                          _pageController.position.pixels) {
+                        _tabController.position.jumpToWithoutSettling(
+                            _pageController.position.pixels);
+                      }
                     }
                   },
                   child: new PageView.builder(
