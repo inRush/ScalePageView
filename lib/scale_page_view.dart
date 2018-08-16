@@ -57,6 +57,13 @@ class ScalePageViewState extends State<ScalePageView> {
   ValueNotifier<double> selectedIndex = new ValueNotifier(0.0);
   List<Widget> backgrounds;
 
+  /// 在使用Key调用该处的时候,切记不能在最外层使用StatelessWidget
+  /// 这样可能会时Key发生变化,然后造成State重建
+  /// The purpose of a stateful widget is that they don't recreate their state object every time
+  /// they are built - otherwise they would be the same as a regular Widget.
+  /// A state object is recreated if the widget's runtimeType or key is different.
+  /// Otherwise the lifecycle didUpdateWidget is used to notify the State object that the configuration changed.
+  @Deprecated('This will lead to bugs.')
   void jumpToWithoutSettling(double value) {
     if (_pageController.position.pixels != value) {
       _pageController.position.jumpToWithoutSettling(value);

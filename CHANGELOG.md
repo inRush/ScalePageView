@@ -7,6 +7,10 @@
 
 No Change
 
-## [1.0.1] - [Minor edits] Add Property
+## [1.0.1] - (Minor edits) Add Property
 
 add ScrollPhysics property
+
+## [1.0.2] - (Minor edits) Fix bug
+
+fix example recreate bug
