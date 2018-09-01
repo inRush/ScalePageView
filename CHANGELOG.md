@@ -14,3 +14,8 @@ add ScrollPhysics property
 ## [1.0.2] - (Minor edits) Fix bug
 
 fix example recreate bug
+
+## [1.0.3] - (Minor edits) Fix bug
+
+* fix pageTapChange invalid bug
+* delete pageTapOffset attributes

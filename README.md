@@ -23,7 +23,7 @@
 Add this to your package's pubspec.yaml file:
 ``` 
 dependencies:
-  scale_page_view: ^1.0.2
+  scale_page_view: ^1.0.3
 ```
 You can install packages from the command line:
 ```
@@ -47,6 +47,8 @@ onPageChanging,
 /// type: ValueChanged<int>
 /// 页面变化时触发,接收的参数为改变后的新页面
 onPageChange,
+/// 当前页点击回调
+onCurrentTabTap,
 /// type: List<Widget>
 /// 每一页的背景,length 必须等于 children.length
 backgrounds,
@@ -59,16 +61,13 @@ indicator: true,
 indicatorColor: Colors.black,
 /// 相邻的Page点击的时候是否要跳转
 pageTapChange: true,
-/// 在相邻的两页很远的时候,点击离中心 offset 这么远的时候,
-/// 跳转对应页面
-pageTapOffset: 60.0,
 /// 当前页占屏幕宽度比例
 pageRatio: 0.5,
-/// 相邻页面的缩放比,影响页面之间的间距
+/// 未选中页的缩放比,影响页面之间的间距
 scaleRatio: 0.2,
 /// 相邻页面的不透明度
 opacityRatio: 0.5,
-/// 上下的Padding
+/// 页面的上下的Padding
 paddingTB: 23.0
 
 new Container(

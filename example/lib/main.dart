@@ -152,11 +152,15 @@ class Example1State extends State<Example1> {
               child: new ScalePageView(
                 controller: _tabController,
                 children: images,
+                pageTapChange: true,
 //              backgrounds: backgrounds,
                 onPageChanging: (value) {
                   if (_pageController.position.pixels != value) {
                     _pageController.position.jumpToWithoutSettling(value);
                   }
+                },
+                onCurrentTabTap: (index){
+                  debugPrint("touch $index");
                 },
                 indicatorColor: Colors.white,
                 pageRatio: 0.7,
