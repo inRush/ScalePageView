@@ -1,7 +1,7 @@
 library scale_page_view;
 
 import 'package:flutter/material.dart';
-
+import 'dart:math' as math;
 const double kPageIndicatorWidth = 32.0;
 
 class ScalePageView extends StatefulWidget {
@@ -16,12 +16,12 @@ class ScalePageView extends StatefulWidget {
       this.indicator: true,
       this.indicatorColor: Colors.black,
       this.pageTapChange: true,
-      this.pageTapOffset: 60.0,
       this.pageRatio: 0.5,
       this.scaleRatio: 0.2,
       this.opacityRatio: 0.5,
       this.paddingTB: 23.0,
-      this.physics})
+      this.physics,
+      this.onCurrentTabTap})
       : assert(children != null && children.length > 0),
         assert(pageRatio <= 1.0 && pageRatio > 0),
         assert(scaleRatio <= 1.0 && scaleRatio > 0),
@@ -38,13 +38,13 @@ class ScalePageView extends StatefulWidget {
   final bool indicator;
   final Color indicatorColor;
   final bool pageTapChange;
-  final double pageTapOffset;
+
   final double pageRatio;
   final double scaleRatio;
   final double opacityRatio;
   final double paddingTB;
   final ScrollPhysics physics;
-
+  final ValueChanged<int> onCurrentTabTap;
 
   @override
   State<StatefulWidget> createState() {
@@ -106,7 +106,6 @@ class ScalePageViewState extends State<ScalePageView> {
             selectedIndex: selectedIndex,
             pages: pages,
             backgrounds: backgrounds,
-            pageTapOffset: widget.pageTapOffset,
             pageTapChange: widget.pageTapChange,
             indicator: widget.indicator,
             indicatorColor: widget.indicatorColor,
@@ -115,9 +114,13 @@ class ScalePageViewState extends State<ScalePageView> {
             opacityRatio: widget.opacityRatio,
             paddingTB: widget.paddingTB,
             onTabTap: (index) {
-              _pageController.animateToPage(index,
-                  duration: new Duration(milliseconds: 500),
-                  curve: Curves.fastOutSlowIn);
+              if (index == _pageController.page.ceil() && widget.onCurrentTabTap != null) {
+                widget.onCurrentTabTap(index);
+              } else if (widget.pageTapChange) {
+                _pageController.animateToPage(index,
+                    duration: new Duration(milliseconds: 500),
+                    curve: Curves.fastOutSlowIn);
+              }
             },
           ),
         ),
@@ -214,9 +217,9 @@ class _AllPagesView extends AnimatedWidget {
           id: 'bg$index',
           child: new GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTapUp: (TapUpDetails details) {
-                changePage(details, size.maxWidth, index);
-              },
+//              onTapUp: (TapUpDetails details) {
+//                changePage(details, size.maxWidth, index);
+//              },
               child: new Container(
                 child: backgrounds == null ? null : backgrounds[index],
               )),
@@ -227,7 +230,9 @@ class _AllPagesView extends AnimatedWidget {
           id: 'page$index',
           child: new GestureDetector(
             onTapUp: (TapUpDetails details) {
-              onTabTap(index);
+              if (onTabTap != null) {
+                onTabTap(index);
+              }
             },
             child: new _PageWrapper(
                 child: pages[index],
