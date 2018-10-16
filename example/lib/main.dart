@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scale_page_view/scale_page_view.dart';
 
 void main() {
-  MaterialPageRoute.debugEnableFadingRoutes = true;
+//  MaterialPageRoute.debugEnableFadingRoutes = true;
   runApp(new MyApp());
 }
 
